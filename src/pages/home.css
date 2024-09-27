@@ -1,0 +1,8 @@
+body {
+    background-image: url(../images/Background.jpg);
+    background-size:contain;
+    background-size: cover;
+    height: 30vh;
+    background-repeat: no-repeat;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}

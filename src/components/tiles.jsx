@@ -1,3 +1,4 @@
+import React from "react";
 import Data from "../data.js";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,41 +7,47 @@ import {
   faWifi,
   faCar,
   faMugSaucer,
+  faBowlFood,
   faPersonSwimming,
-  faBeerMugEmpty,
   faUtensils,
   faUmbrellaBeach,
   faDumbbell,
   faBanSmoking,
-  faBed
+  faBed,
+  faWineGlass,
+  faChild
 } from "@fortawesome/free-solid-svg-icons"; // Import the necessary FontAwesome icons
 
 // Create a mapping between amenity names and actual icon objects
 const IconMapping = {
+  faChild: faChild,
   faMugSaucer: faMugSaucer,
+  faBowlFood: faBowlFood,
   faWifi: faWifi,
   faCar: faCar,
-  faBeerMugEmpty: faBeerMugEmpty,
   faPersonSwimming: faPersonSwimming,
   faUtensils: faUtensils,
   faUmbrellaBeach: faUmbrellaBeach,
   faDumbbell: faDumbbell,
   faBanSmoking: faBanSmoking,
-  faBed: faBed
+  faBed: faBed,
+  faWineGlass: faWineGlass,
 };
 
 const Amenities = {
-  Breakfast: "faMugSaucer",
+  "Child-friendly": "faChild",
+  "Free breakfast": "faBowlFood",
+  "Breakfast ($)": "faMugSaucer",
   "Free Wifi": "faWifi",
   "Free parking": "faCar",
   "Air conditioning": "",
-  Bar: "faBeerMugEmpty",
+  Bar: "faWineGlass",
   "Outdoor pool": "faPersonSwimming",
   Restaurant: "faUtensils",
   "Beach access": "faUmbrellaBeach",
   "Fitness centre": "faDumbbell",
   "Smoke-free property": "faBanSmoking",
-  "Room service": "faBed"
+  "Room service": "faBed",
 };
 
 export const Tiles = () => {
@@ -64,36 +71,34 @@ export const Tiles = () => {
                   {hotel.name}
                 </h5>
                 <div className="flex items-center">
-                  <span className="m-1 text-gray-700">
-                    {hotel.overall_rating}
-                  </span>
+                  <span className="m-1 text-gray-700">{hotel.overall_rating}</span>
                   <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
                   <span className="text-blue-600 m-1">({hotel.reviews})</span>
                 </div>
 
-                <div className="flex flex-wrap mt-2">
+                <div className="grid grid-cols-3 gap-2 mt-4">
                   {hotel.amenities?.map((amenity, index) => {
                     const icon = IconMapping[Amenities[amenity]];
-                    return (
-                      icon && (
-                        <div key={index} className="flex items-center mr-4">
+                    if (icon) {
+                      return (
+                        <div key={index} className="flex items-center space-x-1 text-sm">
                           <FontAwesomeIcon
                             icon={icon}
-                            className="text-gray-600 cursor-pointer"
+                            className="text-gray-600"
                             title={amenity}
                           />
+                          <span className="text-gray-700">{amenity}</span>
                         </div>
-                      )
-                    );
+                      );
+                    }
+                    return null;
                   })}
                 </div>
-
-                <button className="ml-auto bg-black text-white py-2 px-4 rounded hover:bg-gray-800">
+                <button className="ml-auto bg-blue-600 text-white py-2 px-4 rounded hover:bg-gray-800 mt-4">
                   <Link to={hotel.link} className="text-white">
                     Visit
                   </Link>
                 </button>
-
               </div>
             </div>
           </div>

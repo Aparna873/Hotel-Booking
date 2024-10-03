@@ -56,13 +56,13 @@ export const Tiles = () => {
   } = useContext(AppContext);
 
   return (
-    <div className="flex flex-col items-center justify-center mt-10 min-h-10">
+    <div className={hotels ? "flex flex-col items-center justify-center -mt-60 " : ""}>
       {hotels.properties && hotels.properties.length > 0 ? (
         hotels.properties.map((hotel) => (
           <div
             key={hotel.id}
-            className="m-8 relative w-full flex justify-center">
-            <div className="flex flex-row bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 max-w-4xl w-full">
+            className="m-8 relative w-full flex justify-center ">
+            <div className="flex flex-row bg-white border border-gray-200 rounded-lg  hover:bg-gray-100 max-w-4xl w-full  shadow-xl">
               <img
                 className="object-cover w-1/3 rounded-l-lg"
                 src={hotel.images[0]?.thumbnail || "fallback-image-url.jpg"}
@@ -107,7 +107,7 @@ export const Tiles = () => {
           </div>
         ))
       ) : (
-        <div className="h-14"></div>
+        <div className="mt-52"></div>
       )}
     </div>
   );

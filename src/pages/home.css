@@ -1,8 +1,8 @@
-body {
+/* home.css */
+.with-background {
     background-image: url(../images/Background.jpg);
-    background-size:contain;
     background-size: cover;
-    height: 30vh;
+    height: 110vh;
     background-repeat: no-repeat;
     box-sizing: border-box; /* Ensure padding is included in the width */
 }

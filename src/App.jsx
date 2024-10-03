@@ -1,19 +1,38 @@
-import { BrowserRouter as Router, Routes,Route } from 'react-router-dom';
-import './App.css'
-import { Navbar } from './components/navbar'
-import { Home } from './pages/home'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navbar } from './components/navbar';
+import { Home } from './pages/home';
+import { createContext, useState } from 'react';
+import { Contact } from './pages/contact';
+import { About } from './pages/about';
+import { Service } from './pages/service';
+import { Footer } from './components/footer';
+
+// Create the context
+export const AppContext = createContext();
 
 function App() {
+  // Create shared state variables
+  const [hotels, setHotels] = useState([]);
+
   return (
-   <>
-<Router>
-     <Navbar/>
+    <AppContext.Provider
+      value={{
+        hotels,
+        setHotels,
+      }}
+    >
+      <Router>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About/>} />
+          <Route path="/contact" element={<Contact/>} />
+          <Route path="/service" element={<Service/>} />
         </Routes>
-    </Router>
-   </>
-  )
+        <Footer/>
+      </Router>
+    </AppContext.Provider>
+  );
 }
 
-export default App
+export default App;

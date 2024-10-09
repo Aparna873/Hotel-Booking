@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./home.css";
 import { Tiles } from "../components/tiles.jsx";
 import { AppContext } from "../App.jsx";
@@ -21,32 +21,9 @@ export const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent the default form submission behavior
     if (!checkInDate || !checkOutDate) {
-      toast.error("You need to provide both check-in and check-out dates", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        theme: "light",
-        style: {
-          background: "#ffcccb", // Soft red for an error message
-          color: "#333333", // Darker text color for readability
-          borderRadius: "8px", // Subtle rounded corners for a clean look
-          padding: "10px", // Ample padding for balanced spacing
-          fontWeight: "bold", // Bold text to emphasize the error
-          border: "1px solid #ff4e50", // Border to define the toast clearly
-          boxShadow: "0 8px 20px rgba(0, 0, 0, 0.2)", // Added shadow for better depth and visual appeal
-        },
-        icon: "🚫", // Custom icon for better user experience
-      });
+      toast.error("You need to provide both check-in and check-out dates");
       return;
     }
-    
-    
-    // Log the state values (searchQuery, checkInDate, checkOutDate)
-    console.log("Search Query:", searchQuery);
-    console.log("Check-in Date:", checkInDate);
-    console.log("Check-out Date:", checkOutDate);
 
     // Make the API call
     fetchHotels(searchQuery, checkInDate, checkOutDate);
@@ -79,7 +56,6 @@ export const Home = () => {
       setLoading(false); // Stop loading
     }
   };
-
   return (
     <>
       <div className={`${isHomePage ? "with-background" : ""}`}>
